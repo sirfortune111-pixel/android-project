@@ -1,27 +1,18 @@
-# Техническое задание: Мультивалютный Non-Custodial Exchange-кошелёк
+# Technical Specification & Agent Directives
 
-## 1. Архитектурные инварианты
-- **Self-Custody:** Приватные ключи и seed-фразы генерируются, шифруются (Android Keystore / AES-256) и хранятся строго локально на устройстве. Сервер не имеет доступа к средствам пользователя.
-- **Zero-KYC:** Отсутствие обязательной верификации личности для хранения и криптографических операций.
-- **Unified UX:** Единый интерфейс для управления разными активами и платёжными системами без необходимости устанавливать отдельные приложения.
-- **Smart Routing 24/7:** Автоматический анализ котировок множества обменных провайдеров в реальном времени и исполнение обмена по лучшему курсу в несколько кликов.
+## 1. Core Architecture
+- Self-Custody: Local key generation & Android Keystore encryption. Zero server access to keys.
+- Zero-KYC: Immediate onboarding without identity verification.
+- Unified UX: Single interface for multi-currency assets and payment systems.
+- Smart Routing 24/7: Real-time rate aggregation across liquidity providers for optimal swap execution.
 
-## 2. Директивные команды для AI-агентов
+## 2. Agent Directives
 
-### DIRECTIVE 01 — SYSTEM ARCHITECTURE & SECURITY
-Act as a Principal FinTech & Cryptography Architect. Design a non-custodial multi-currency mobile wallet with an integrated real-time exchange aggregator.
-- Never transmit, log, or store user private keys or mnemonics on any backend server. All transaction signing must execute strictly client-side.
-- Implement No-KYC onboarding: immediate access upon local wallet creation/import.
-- Enforce hardware-backed encryption (Android Keystore) for local key storage.
+### DIRECTIVE 01 - SECURITY & SELF-CUSTODY
+Act as a Principal FinTech & Cryptography Architect. Build a non-custodial multi-currency mobile wallet. Store private keys strictly client-side via Android Keystore. Never log or transmit keys/mnemonics.
 
-### DIRECTIVE 02 — REAL-TIME SMART EXCHANGE ROUTER (24/7)
-Act as a Senior Backend & Quantitative Systems Engineer. Build a quote aggregation service that:
-- Streams and polls live exchange rates across multiple liquidity providers 24/7.
-- Normalizes fees, spreads, and slippage in real time.
-- Returns the single optimal execution route for any pair (Asset_A -> Asset_B) at the moment of swap initiation.
+### DIRECTIVE 02 - 24/7 SMART EXCHANGE ROUTER
+Act as a Senior Backend Engineer. Aggregate live quotes 24/7, normalize fees/slippage, and return the best swap route in real time.
 
-### DIRECTIVE 03 — UNIFIED MOBILE CLIENT & UX FLOW
-Act as a Senior Mobile Developer. Implement a unified interface that eliminates multi-app fragmentation:
-- Consolidate multi-chain balances into a single portfolio screen.
-- Reduce asset conversion to a 3-step flow: Select Pair & Amount -> Review Best Smart-Routed Rate -> Biometric Sign & Execute.
-- Eliminate manual address copying during swaps to prevent user errors and fund loss.
+### DIRECTIVE 03 - UNIFIED MOBILE UX
+Act as a Senior Mobile Developer. Consolidate multi-chain balances in one screen and execute swaps in 3 steps (Select Pair -> Best Rate -> Biometric Sign) without manual address copying.
